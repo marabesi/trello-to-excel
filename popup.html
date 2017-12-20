@@ -17,15 +17,22 @@
         display: flex;
         justify-content: space-between;
       }
+
+      #sheet {
+        display: none;
+      }
     </style>
 
+    <script src="vendor/xlsx.full.min.js"></script>
     <script src="popup.js"></script>
   </head>
 
   <body>
     <h1>Select your board</h1>
     <div id="container">
-      <select id="board"></select>
+      <button id="download">Download</button>
     </div>
+
+    <div id="sheet"></div>
   </body>
 </html>
