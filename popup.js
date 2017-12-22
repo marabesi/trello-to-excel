@@ -24,14 +24,24 @@ function s2ab(s) {
 
 function parseTrelloBoards(boardColumns) {
   var columnsHeader = [];
+  var titles = [];
 
   for (var i =0; i< boardColumns.length; i++) {
     var dom = new DOMParser();
     var nodeList = dom.parseFromString(boardColumns[i], 'text/html');
 
     columnsHeader[i] = nodeList.querySelector('h2').innerText;
-  }
 
+    var cardTitles = nodeList.querySelectorAll('.list-card-title');
+    var cardsInEachColumn = []
+    
+    for (var j = 0; j < cardTitles.length; j++) {
+      cardsInEachColumn[j] = cardTitles[j].innerText;;
+    }
+
+    titles[i] = cardsInEachColumn;
+  }
+  
   var aoa = [
     columnsHeader
   ];

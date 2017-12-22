@@ -1,0 +1,40 @@
+{
+  "name": "trello-to-excel",
+  "version": "1.0.0",
+  "description": "Simple extension to export your board to excel",
+  "main": "._popup.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marabesi/trello-to-excel.git"
+  },
+  "keywords": [
+    "trello",
+    "js",
+    "excel",
+    "export",
+    "boards",
+    "chrome",
+    "extension",
+    "chrome"
+  ],
+  "author": "Matheus Marabesi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marabesi/trello-to-excel/issues"
+  },
+  "homepage": "https://github.com/marabesi/trello-to-excel#readme",
+  "dependencies": {
+    "jasmine": "^2.8.0",
+    "karma": "^2.0.0"
+  },
+  "devDependencies": {
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1"
+  }
+}
