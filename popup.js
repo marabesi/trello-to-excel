@@ -36,14 +36,14 @@ function parseTrelloBoards(boardColumns) {
     var cardsInEachColumn = []
     
     for (var j = 0; j < cardTitles.length; j++) {
-      cardsInEachColumn[j] = cardTitles[j].innerText;;
+      cardsInEachColumn[j] = cardTitles[j].innerText;
     }
 
     titles[i] = cardsInEachColumn;
   }
   
   var aoa = [
-    columnsHeader
+    columnsHeader,
   ];
 
   var ws = XLSX.utils.aoa_to_sheet(aoa);
