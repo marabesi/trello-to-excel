@@ -5,5 +5,3 @@ env:
   global:
   - GH_REPO="marabesi/trello-to-excel"
 script: npm install
-  - test $TRAVIS_BRANCH = "master" &&
-    test $TRAVIS_PULL_REQUEST = "false"
