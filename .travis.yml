@@ -6,4 +6,4 @@ env:
   - GH_REPO="marabesi/trello-to-excel"
 script:
   - npm install
-  - npm run test
+  - npm run test-ci
