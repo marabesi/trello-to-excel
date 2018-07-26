@@ -23,10 +23,10 @@ function s2ab(s) {
 }
 
 function parseTrelloBoards(boardColumns) {
-  var columnsHeader = [];
+  const columnsHeader = [];
   var titles = [];
 
-  for (var i =0; i< boardColumns.length; i++) {
+  for (var i = 0; i< boardColumns.length; i++) {
     var dom = new DOMParser();
     var nodeList = dom.parseFromString(boardColumns[i], 'text/html');
 
@@ -34,26 +34,44 @@ function parseTrelloBoards(boardColumns) {
 
     var cardTitles = nodeList.querySelectorAll('.list-card-title');
     var cardsInEachColumn = []
-    
+
     for (var j = 0; j < cardTitles.length; j++) {
-      cardsInEachColumn[j] = cardTitles[j].innerText;
+      cardsInEachColumn[j] = { title: cardTitles[j].innerText };
     }
 
-    titles[i] = cardsInEachColumn;
+    titles[columnsHeader[i]] = cardsInEachColumn;
   }
-  
-  var aoa = [
-    columnsHeader,
-  ];
+
+  var aoa = [];
+  var total = 0;
+  var current = 0;
+  var rowCount = 0;
+  var colCount = 0;
+
+  for (let row in titles) {
+    colCount = 0;
+
+    aoa[rowCount] = new Array();
+
+    for (let col in titles) {
+        if(titles[col][rowCount]) {
+            aoa[rowCount][colCount] = titles[col][rowCount].title;
+        }
+
+        colCount++;
+    }
+
+    rowCount++;
+  }
 
   var ws = XLSX.utils.aoa_to_sheet(aoa);
 
   document.getElementById("sheet").innerHTML = XLSX.utils.sheet_to_html(ws, {
-    editable: true 
+    editable: true
   }).replace("<table>", '<table id="table" border="1">');
 
   var sheet = XLSX.utils.table_to_book(document.getElementById('sheet'), {
-    sheet: "Trello" 
+    sheet: "Trello"
   });
 
   var wbout = XLSX.write(sheet, {
