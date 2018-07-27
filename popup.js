@@ -64,7 +64,9 @@ function parseTrelloBoards(boardColumns) {
     rowCount++;
   }
 
-  var ws = XLSX.utils.aoa_to_sheet(aoa);
+  var ws = XLSX.utils.aoa_to_sheet([Object.keys(titles)]);
+
+  XLSX.utils.sheet_add_aoa(ws, aoa, { origin: -1});
 
   document.getElementById("sheet").innerHTML = XLSX.utils.sheet_to_html(ws, {
     editable: true
