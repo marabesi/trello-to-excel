@@ -1,4 +1,10 @@
 language: node_js
+os:
+  - linux
+  - windows
+matrix:
+  allow_failures:
+    - os: windows
 node_js:
 - "7"
 - "8"
