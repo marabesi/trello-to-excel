@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((selectedTab) => {
     const download = document.getElementById('download');
 
+    download.style.display = 'none';
+
+    if (selectedTab && selectedTab.selected && selectedTab.url.indexOf('trello.com') >= 0) {
+      download.style.display = 'block';
+    }
+    
     download.addEventListener('click', () => {
       const tab = selectedTab;
 
