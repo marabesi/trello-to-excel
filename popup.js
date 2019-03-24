@@ -22,11 +22,12 @@ function s2ab(s) {
   }
 }
 
-function parseTrelloBoards(boardColumns) {
+function parseTrelloBoards(result) {
+  const boardColumns = result.list;
   const columnsHeader = [];
   const titles = [];
 
-  for (let i = 0; i< boardColumns.length; i++) {
+  for (let i = 0; i < boardColumns.length; i++) {
     const dom = new DOMParser();
     const nodeList = dom.parseFromString(boardColumns[i], 'text/html');
 
@@ -43,8 +44,6 @@ function parseTrelloBoards(boardColumns) {
   }
 
   let aoa = [];
-  let total = 0;
-  let current = 0;
   let rowCount = 0;
   let colCount = 0;
 
@@ -70,10 +69,10 @@ function parseTrelloBoards(boardColumns) {
 
   document.getElementById("sheet").innerHTML = XLSX.utils.sheet_to_html(ws, {
     editable: true
-  }).replace("<table>", '<table id="table" border="1">');
+  }).replace('<table>', '<table id="table" border="1">');
 
   const sheet = XLSX.utils.table_to_book(document.getElementById('sheet'), {
-    sheet: "Trello"
+    sheet: 'Trello'
   });
 
   const wbout = XLSX.write(sheet, {
@@ -84,7 +83,7 @@ function parseTrelloBoards(boardColumns) {
 
   const blob = new Blob(
     [s2ab(wbout)],
-    { type: "application/octet-stream" }
+    { type: 'application/octet-stream' }
   );
 
   const url = URL.createObjectURL(blob);
@@ -100,6 +99,7 @@ chrome.extension.onRequest.addListener(parseTrelloBoards);
 
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((selectedTab) => {
+
     const download = document.getElementById('download');
 
     download.style.display = 'none';
